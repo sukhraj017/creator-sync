@@ -1,30 +1,32 @@
-name: Obfuscate Engine
+name: Secure Obfuscation Build
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Install Node
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: Obfuscate
-        run: npm run build:obf
+      - name: Run obfuscation
+        env:
+          BUILD_KEY: ${{ secrets.BUILD_KEY }}
+        run: node build/obfuscate.js
 
-      - name: Commit Obfuscated Engine
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          git add ops/ffcore.impl.js ops/ffcore.impl.checksum.txt
-          git commit -m "Auto-obfuscate engine"
-          git push
+      - name: Upload obfuscated output
+        uses: actions/upload-artifact@v4
+        with:
+          name: ffcore-obfuscated
+          path: ops/ffcore.impl.js
