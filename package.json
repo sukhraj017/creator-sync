@@ -1,0 +1,24 @@
+{
+  "name": "creatorsync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "create_project_structure.js",
+  "scripts": {
+    "build:obf": "node build/obfuscate.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sukhraj017/creator-sync.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/sukhraj017/creator-sync/issues"
+  },
+  "homepage": "https://github.com/sukhraj017/creator-sync#readme",
+  "dependencies": {
+    "javascript-obfuscator": "^4.1.1"
+  }
+}
