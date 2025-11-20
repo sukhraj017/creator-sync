@@ -1,0 +1,1 @@
+// fake AI script — decoy
